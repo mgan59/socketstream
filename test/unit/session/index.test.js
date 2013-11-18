@@ -22,7 +22,7 @@ describe('session index', function () {
 
             it('should set a connect-based session store for use');
 
-            it('should allow the user to specify usage of connect-redis by referencing it\'s name');
+            it('should allow the user to use connect-redis by passing it\'s name');
 
         });
 
