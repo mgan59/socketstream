@@ -2,13 +2,24 @@
 
 
 
+// Dependencies
+//
+var assert  = require('assert'),
+    index   = require('../../../lib/session/index');
+
+
+
 describe('session index', function () {
 
 
 
     describe('exports.options', function () {
 
-        it('should return an object containing the options for session management');
+        it('should return an object containing the options for session management', function (done) {
+            assert(typeof index.options.maxAge === 'object');
+            assert(index.options.maxAge === null);
+            done();
+        });
 
     });
 
