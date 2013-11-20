@@ -5,6 +5,7 @@
 // Dependencies
 //
 var assert  = require('assert'),
+    connect = require('connect'),
     index   = require('../../../lib/session/index');
 
 
@@ -31,7 +32,19 @@ describe('session index', function () {
 
         describe('#use', function () {
 
-            it('should set a connect-based session store for use');
+            var RedisStore, MemoryStore;
+
+            before(function (done) {
+                RedisStore  = require('connect-redis')(connect);
+                MemoryStore = new connect.session.MemoryStore();
+                done();
+            });
+
+            it('should set a connect-based session store for use', function (done) {
+                index.store.use(RedisStore);
+                assert.deepEqual(RedisStore, index.store.get());
+                done();
+            });
 
             it('should allow the user to use connect-redis by passing it\'s name');
 
