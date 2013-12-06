@@ -6,7 +6,9 @@ var fs              = require('fs'),
     path            = require('path'),
     should          = require('should'),
     ac              = require('../../helpers/assertionCounter'),
+    // the unit of code/api we are testing
     fileUtils       = require( path.join(process.env.PWD, 'lib/utils/file') ),
+    // `fixtures` are mocked files used for testing functionality
     projectDir      = path.join(process.env.PWD, 'test/fixtures/project'),
     testDir         = path.join(process.env.PWD, 'test/fixtures/files'),
     testReadDirSync = path.join(process.env.PWD, 'test/fixtures/readDirSync');
