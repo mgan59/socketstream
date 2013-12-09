@@ -2,10 +2,19 @@
 
    //var router = new (require('../../../lib/http/router').Router),
    // import socket stream and scope the http module
-   var http = require('../../../lib/socketstream').http,
+   //var http = require('../../../lib/socketstream').http,
    // then scope the router provided by the http
-   router = http.router,
-   gently = new (require('gently'));
+   //router = http.router,
+   var gently = new (require('gently'));
+
+   var ss = require('../../../lib/socketstream');
+// Start web server
+var ssPort = 5000;
+var nhttp = require('http');
+var server = nhttp.Server();
+console.log('SocketStream APP started on port '+ssPort);
+server.listen(ssPort);
+ss.start(server, {disableMiddleware:true});
 
 describe('HTTP middleware', function () {
 
@@ -79,9 +88,9 @@ describe('HTTP middleware', function () {
             */
             
             //router.on('/testClient');
-            var test = gently.expect(router, 'route');
-            router.route('/testClient');
-            console.log('chk ', test);
+            //var test = gently.expect(router, 'route');
+            //http.route('/');
+            //console.log('chk ', test);
         });
 
 
