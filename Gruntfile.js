@@ -68,7 +68,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     src: [
-                        'test/unit/**/*.js'
+                        'test/unit/**/*.js',
+                        'test/functional/**/*.js'
                     ]
                 }
             }
@@ -76,6 +77,7 @@ module.exports = function(grunt) {
         mochaTest: {
             src: [
                 'test/unit/**/*.test.js',
+                'test/functional/**/*.test.js'
             ],
             options: {
                 reporter: 'spec'
