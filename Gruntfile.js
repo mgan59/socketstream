@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-shell');
 
     /*
         Project configuration
@@ -17,6 +18,14 @@ module.exports = function(grunt) {
         to merge the required options
 
     */
+
+// stderr bubbles up through grunt-shell
+function log(err, stdout, stderr, cb) {
+    console.log(stdout);
+    console.log(err);
+    console.log(stderr);
+    cb();
+}
     grunt.initConfig({
         jshint: {
             server: {
@@ -74,6 +83,15 @@ module.exports = function(grunt) {
                 }
             }
         },
+        shell: {
+            runTestServer: {
+                command: 'node /home/morgan/Documents/projects/socketstream/ss/test/fixtures/project/app.js &',
+                options:{
+                    stdout:true,
+                    callback:log
+                }
+            }
+        },
         mochaTest: {
             src: [
                 'test/unit/**/*.test.js',
@@ -87,4 +105,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', 'Default task which runs all the required subtasks', ['jshint', 'test']);
     grunt.registerTask('test', 'Test everything', ['mochaTest']);
+    grunt.registerTask('runTestServer', 'run test server', ['shell:runTestServer']);
 }

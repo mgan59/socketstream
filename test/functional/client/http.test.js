@@ -13,9 +13,9 @@
             console.log('-- ',fixtureSSApp);
 var exec = require('child_process').exec;
 var sys = require('sys');
+// execute system call
 exec(fixtureSSApp, function(err, stdout, stderr){
     console.log(err);
-    console.log('on the funeral');
     console.log(stdout);
     console.log(stderr);
 });
